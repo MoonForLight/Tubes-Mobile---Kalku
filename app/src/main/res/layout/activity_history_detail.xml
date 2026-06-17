@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/screen_background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <ImageButton android:id="@+id/btnBack" android:layout_width="44dp" android:layout_height="44dp" android:background="@android:color/transparent" android:src="@drawable/ic_back" />
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:id="@+id/tvProductName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Detail Riwayat" android:textColor="@color/text_dark" android:textSize="21sp" android:textStyle="bold" />
+                <TextView android:id="@+id/tvDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tanggal" android:textColor="@color/text_gray_light" android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:background="@drawable/bg_card_orange" android:gravity="center" android:orientation="vertical" android:padding="22dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HARGA JUAL PER PRODUK" android:textColor="#FFF3EA" android:textSize="11sp" android:textStyle="bold" />
+            <TextView android:id="@+id/tvSellingPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Rp0" android:textColor="@color/white" android:textSize="32sp" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="90dp" android:layout_weight="1" android:layout_marginEnd="6dp" android:background="@drawable/bg_card_rounded" android:orientation="vertical" android:padding="14dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Biaya" android:textColor="@color/text_gray_light" /><TextView android:id="@+id/tvTotalCost" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Rp0" android:textColor="@color/text_dark" android:textSize="17sp" android:textStyle="bold" /></LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="90dp" android:layout_weight="1" android:layout_marginStart="6dp" android:background="@drawable/bg_card_rounded" android:orientation="vertical" android:padding="14dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Profit" android:textColor="@color/text_gray_light" /><TextView android:id="@+id/tvTotalProfit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Rp0" android:textColor="@color/green_profit" android:textSize="17sp" android:textStyle="bold" /></LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:background="@drawable/bg_card_rounded" android:orientation="vertical" android:padding="16dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rincian" android:textColor="@color/text_dark" android:textSize="17sp" android:textStyle="bold" />
+            <TextView android:id="@+id/tvProductionCost" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:text="Biaya produksi: Rp0" android:textColor="@color/text_dark" />
+            <TextView android:id="@+id/tvOperationalCost" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="Biaya operasional: Rp0" android:textColor="@color/text_dark" />
+            <TextView android:id="@+id/tvQuantity" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="1 produk" android:textColor="@color/text_dark" />
+            <TextView android:id="@+id/tvProfitPercentage" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="25%" android:textColor="@color/green_profit" android:textStyle="bold" />
+        </LinearLayout>
+        <Button android:id="@+id/btnRecalculate" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="20dp" android:background="@drawable/bg_button_primary" android:backgroundTint="@null" android:text="Hitung Ulang" android:textAllCaps="false" android:textColor="@color/white" android:textStyle="bold" />
+        <Button android:id="@+id/btnDelete" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="10dp" android:background="@drawable/bg_button_secondary" android:backgroundTint="@null" android:text="Hapus Riwayat" android:textAllCaps="false" android:textColor="#C34A3E" android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

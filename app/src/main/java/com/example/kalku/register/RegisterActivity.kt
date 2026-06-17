@@ -2,111 +2,81 @@ package com.example.kalku.register
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.kalku.R
 import com.example.kalku.data.local.AppDatabase
 import com.example.kalku.data.local.UserEntity
+import com.example.kalku.databinding.ActivityRegisterBinding
 import com.example.kalku.login.LoginActivity
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
 
-    // Deklarasi database Room
-    private lateinit var database: AppDatabase
+    private lateinit var binding: ActivityRegisterBinding
+    private var passwordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Inisialisasi Database Room
-        database = AppDatabase.getDatabase(this)
+        binding.ivClose.setOnClickListener { finish() }
+        binding.tvSignIn.setOnClickListener { openLogin() }
+        binding.ivTogglePassword.setOnClickListener { togglePassword() }
+        binding.btnCreateAccount.setOnClickListener { register() }
+    }
 
-        val etFullName = findViewById<EditText>(R.id.etFullName)
-        val etBusinessName = findViewById<EditText>(R.id.etBusinessName)
-        val etEmail = findViewById<EditText>(R.id.etEmail)
-        val etPassword = findViewById<EditText>(R.id.etPassword)
-        val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
-        val cbTerms = findViewById<CheckBox>(R.id.cbTerms)
-        val btnCreateAccount = findViewById<RelativeLayout>(R.id.btnCreateAccount)
-        val tvSignIn = findViewById<TextView>(R.id.tvSignIn)
+    private fun togglePassword() {
+        passwordVisible = !passwordVisible
+        binding.etPassword.transformationMethod = if (passwordVisible) {
+            HideReturnsTransformationMethod.getInstance()
+        } else {
+            PasswordTransformationMethod.getInstance()
+        }
+        binding.etPassword.setSelection(binding.etPassword.text.length)
+    }
 
-        // Logika ketika Tombol "Create Account" diklik
-        btnCreateAccount.setOnClickListener {
-            val fullName = etFullName.text.toString().trim()
-            val businessName = etBusinessName?.text.toString().trim()
-            val email = etEmail?.text.toString().trim()
-            val password = etPassword?.text.toString()
-            val confirmPassword = etConfirmPassword?.text.toString()
+    private fun register() {
+        val fullName = binding.etFullName.text.toString().trim()
+        val businessName = binding.etBusinessName.text.toString().trim()
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString()
+        val confirmation = binding.etConfirmPassword.text.toString()
 
-            if (fullName.isEmpty() || businessName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(this, "Harap semua data diisi terlebih dahulu!", Toast.LENGTH_SHORT)
-                    .show()
-                return@setOnClickListener
-            }
-
-            if (password != confirmPassword) {
-                Toast.makeText(
-                    this,
-                    "Password dan Konfirmasi Password tidak cocok!",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
-            }
-
-            if (cbTerms == null || !cbTerms.isChecked) {
-                Toast.makeText(
-                    this,
-                    "Anda harus menyetujui Syarat dan Ketentuan!",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
-            }
-
-            lifecycleScope.launch {
-                val userDao = database.userDao()
-                val existingUser = userDao.getUserByEmail(email)
-                if (existingUser != null) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Email sudah terdaftar! Gunakan email lain.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        when {
+            fullName.isBlank() -> binding.etFullName.error = "Nama lengkap harus diisi"
+            businessName.isBlank() -> binding.etBusinessName.error = "Nama usaha harus diisi"
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> binding.etEmail.error = "Format email tidak valid"
+            password.length < 8 -> binding.etPassword.error = "Password minimal 8 karakter"
+            password != confirmation -> binding.etConfirmPassword.error = "Konfirmasi password tidak cocok"
+            !binding.cbTerms.isChecked -> Toast.makeText(this, "Setujui syarat dan ketentuan terlebih dahulu", Toast.LENGTH_SHORT).show()
+            else -> lifecycleScope.launch {
+                val userDao = AppDatabase.getDatabase(this@RegisterActivity).userDao()
+                if (userDao.getUserByEmail(email) != null) {
+                    binding.etEmail.error = "Email sudah terdaftar"
                     return@launch
                 }
 
-                val newUser = UserEntity(
-                    fullName = fullName,
-                    businessName = businessName,
-                    email = email,
-                    password = password
+                userDao.registerUser(
+                    UserEntity(
+                        fullName = fullName,
+                        businessName = businessName,
+                        email = email,
+                        password = password
+                    )
                 )
-
-                userDao.registerUser(newUser)
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "Registrasi Akun Bisnis Berhasil!",
-                    Toast.LENGTH_LONG
-                ).show()
-
-                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                Toast.makeText(this@RegisterActivity, "Registrasi berhasil. Silakan login.", Toast.LENGTH_LONG).show()
+                openLogin()
             }
         }
+    }
 
-        // Logika ketika teks "Sign In" diklik
-        tvSignIn?.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+    private fun openLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 }
-
-

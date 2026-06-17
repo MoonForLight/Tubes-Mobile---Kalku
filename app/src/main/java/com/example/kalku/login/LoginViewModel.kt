@@ -21,17 +21,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             _loginResult.value = LoginResult.Error("Email tidak boleh kosong!")
             return
         }
-
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _loginResult.value = LoginResult.Error("Format email tidak valid!")
             return
         }
-
         if (password.isEmpty()) {
             _loginResult.value = LoginResult.Error("Password tidak boleh kosong!")
             return
         }
-
         if (password.length < 8) {
             _loginResult.value = LoginResult.Error("Password minimal 8 karakter!")
             return
@@ -44,6 +41,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                     message = "Login berhasil! Selamat datang, ${user.fullName}.",
                     userId = user.id,
                     fullName = user.fullName,
+                    businessName = user.businessName,
                     email = user.email
                 )
             } else {
@@ -58,6 +56,7 @@ sealed class LoginResult {
         val message: String,
         val userId: Int,
         val fullName: String,
+        val businessName: String,
         val email: String
     ) : LoginResult()
 

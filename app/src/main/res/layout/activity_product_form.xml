@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/screen_background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <ImageButton android:id="@+id/btnBack" android:layout_width="44dp" android:layout_height="44dp" android:background="@android:color/transparent" android:src="@drawable/ic_back" />
+            <TextView android:id="@+id/tvTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tambah Produk" android:textColor="@color/text_dark" android:textSize="22sp" android:textStyle="bold" />
+        </LinearLayout>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:text="Nama Produk" android:textColor="@color/text_dark" android:textStyle="bold" />
+        <EditText android:id="@+id/etProductName" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:hint="Contoh: Kopi Susu" android:paddingHorizontal="16dp" android:textColor="@color/text_dark" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Kategori" android:textColor="@color/text_dark" android:textStyle="bold" />
+        <Spinner android:id="@+id/spinnerCategory" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:paddingHorizontal="12dp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Biaya Produksi" android:textColor="@color/text_dark" android:textStyle="bold" />
+        <EditText android:id="@+id/etProductionCost" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:hint="Rp 0" android:inputType="number" android:paddingHorizontal="16dp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Biaya Operasional" android:textColor="@color/text_dark" android:textStyle="bold" />
+        <EditText android:id="@+id/etOperationalCost" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:hint="Rp 0" android:inputType="number" android:paddingHorizontal="16dp" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="6dp" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jumlah Produk" android:textColor="@color/text_dark" android:textStyle="bold" />
+                <EditText android:id="@+id/etQuantity" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:inputType="number" android:paddingHorizontal="16dp" android:text="1" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="6dp" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Keuntungan (%)" android:textColor="@color/text_dark" android:textStyle="bold" />
+                <EditText android:id="@+id/etProfit" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:inputType="numberDecimal" android:paddingHorizontal="16dp" android:text="25" />
+            </LinearLayout>
+        </LinearLayout>
+        <Button android:id="@+id/btnSaveProduct" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="26dp" android:background="@drawable/bg_button_primary" android:backgroundTint="@null" android:text="Tambah Produk" android:textAllCaps="false" android:textColor="@color/white" android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

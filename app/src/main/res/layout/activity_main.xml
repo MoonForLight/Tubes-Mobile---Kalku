@@ -1,64 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/bg_logo_square"
-        android:padding="16dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="Logo Kalku"
-            android:src="@drawable/ic_calculator"
-            android:tint="@color/white" />
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/tvWelcome"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="Halo, Pengguna!"
-        android:textColor="@color/text_dark"
-        android:textSize="27sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="Fitur kalkulator harga jual sudah siap digunakan."
-        android:textColor="@color/text_gray_light"
-        android:textSize="14sp" />
-
-    <ImageView
-        android:layout_width="230dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:contentDescription="Ilustrasi perhitungan"
-        android:src="@drawable/ic_chart_up" />
+        android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/btnOpenCalculator"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@drawable/bg_button_primary"
-        android:backgroundTint="@null"
-        android:text="Mulai Hitung Harga Jual"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_height="72dp"
+        android:background="@color/white"
+        android:elevation="12dp"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_bottom_navigation" />
 
 </LinearLayout>

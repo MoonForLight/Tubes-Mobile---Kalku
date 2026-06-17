@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.fragment:fragment-ktx:1.8.2")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
     implementation("com.squareup.retrofit2:retrofit:2.11.0")

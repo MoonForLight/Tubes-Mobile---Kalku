@@ -24,13 +24,20 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (SessionManager(this).isLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
         enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
@@ -40,9 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.btnLinearLogin.setOnClickListener {
-            val email = binding.etEmailLogin.text.toString().trim()
-            val password = binding.etPasswordLogin.text.toString()
-            viewModel.login(email, password)
+            viewModel.login(
+                binding.etEmailLogin.text.toString().trim(),
+                binding.etPasswordLogin.text.toString()
+            )
         }
 
         binding.ivTogglePasswordLogin.setOnClickListener {
@@ -61,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.tvForgotPassword.setOnClickListener {
-            Toast.makeText(this, "Fitur reset password akan dikembangkan", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
     }
 
@@ -72,11 +80,13 @@ class LoginActivity : AppCompatActivity() {
                     SessionManager(this).saveLogin(
                         userId = result.userId,
                         fullName = result.fullName,
+                        businessName = result.businessName,
                         email = result.email
                     )
                     Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    startActivity(Intent(this, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    })
                 }
 
                 is LoginResult.Error -> {
