@@ -14,6 +14,7 @@ import com.example.kalku.MainActivity
 import com.example.kalku.R
 import com.example.kalku.databinding.ActivityLoginBinding
 import com.example.kalku.register.RegisterActivity
+import com.example.kalku.utils.SessionManager
 
 class LoginActivity : AppCompatActivity() {
 
@@ -38,36 +39,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Logika ketika Tombol Login diklik
         binding.btnLinearLogin.setOnClickListener {
             val email = binding.etEmailLogin.text.toString().trim()
             val password = binding.etPasswordLogin.text.toString()
             viewModel.login(email, password)
         }
 
-        // Toggle Password Visibility
         binding.ivTogglePasswordLogin.setOnClickListener {
             isPasswordVisible = !isPasswordVisible
-            if (isPasswordVisible) {
-                binding.etPasswordLogin.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                // Gunakan ic_eye jika sudah ada, sementara tetap ic_eye_off atau tidak ganti gambar
-                // binding.ivTogglePasswordLogin.setImageResource(R.drawable.ic_eye)
+            binding.etPasswordLogin.transformationMethod = if (isPasswordVisible) {
+                HideReturnsTransformationMethod.getInstance()
             } else {
-                binding.etPasswordLogin.transformationMethod = PasswordTransformationMethod.getInstance()
-                binding.ivTogglePasswordLogin.setImageResource(R.drawable.ic_eye_off)
+                PasswordTransformationMethod.getInstance()
             }
+            binding.ivTogglePasswordLogin.setImageResource(R.drawable.ic_eye_off)
             binding.etPasswordLogin.setSelection(binding.etPasswordLogin.text.length)
         }
 
-        // Logika pindah ke halaman Register ketika teks Register diklik
         binding.tvSignUp.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        // Logika ketika Teks "Forgot?" diklik
         binding.tvForgotPassword.setOnClickListener {
-            Toast.makeText(this, "Fitur Reset Password akan dikembangkan", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Fitur reset password akan dikembangkan", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -75,11 +69,16 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResult.observe(this) { result ->
             when (result) {
                 is LoginResult.Success -> {
+                    SessionManager(this).saveLogin(
+                        userId = result.userId,
+                        fullName = result.fullName,
+                        email = result.email
+                    )
                     Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
+
                 is LoginResult.Error -> {
                     Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                 }
@@ -87,7 +86,3 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
-
-// TEST PUSH
-
-

@@ -10,19 +10,36 @@
         android:theme="@style/Theme.Kalku">
 
         <activity
+            android:name=".calculator.CalculationResultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".calculator.CalculatorActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".register.RegisterActivity"
             android:exported="false" />
 
         <activity
             android:name=".login.LoginActivity"
-            android:exported="true">
+            android:exported="false" />
 
+        <activity
+            android:name=".onboarding.OnboardingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
     </application>
