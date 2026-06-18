@@ -12,6 +12,7 @@ import com.example.kalku.data.local.CalculationEntity
 import com.example.kalku.databinding.ActivityHistoryDetailBinding
 import com.example.kalku.utils.CurrencyUtils
 import com.example.kalku.utils.DateUtils
+import com.example.kalku.utils.SessionManager
 import kotlinx.coroutines.launch
 
 class HistoryDetailActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class HistoryDetailActivity : AppCompatActivity() {
         lifecycleScope.launch {
             calculation = AppDatabase.getDatabase(this@HistoryDetailActivity)
                 .calculationDao()
-                .getCalculationById(id)
+                .getCalculationById(id, SessionManager(this@HistoryDetailActivity).getUserId())
 
             val item = calculation
             if (item == null) {
@@ -59,6 +60,7 @@ class HistoryDetailActivity : AppCompatActivity() {
     private fun recalculate() {
         val item = calculation ?: return
         startActivity(Intent(this, CalculatorActivity::class.java).apply {
+            item.productId?.let { putExtra(CalculatorActivity.EXTRA_PRODUCT_ID, it) }
             putExtra(CalculatorActivity.EXTRA_PRODUCT_NAME, item.productName)
             putExtra(CalculatorActivity.EXTRA_PRODUCTION_COST, item.productionCost)
             putExtra(CalculatorActivity.EXTRA_OPERATIONAL_COST, item.operationalCost)

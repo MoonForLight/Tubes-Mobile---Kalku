@@ -19,6 +19,9 @@ interface ProductDao {
     @Delete
     suspend fun delete(product: ProductEntity)
 
+    @Query("DELETE FROM products WHERE userId = :userId")
+    suspend fun deleteByUser(userId: Int)
+
     @Query("SELECT * FROM products WHERE userId = :userId ORDER BY updatedAt DESC")
     suspend fun getProductsByUser(userId: Int): List<ProductEntity>
 
@@ -32,15 +35,24 @@ interface ProductDao {
     )
     suspend fun searchProducts(userId: Int, keyword: String): List<ProductEntity>
 
-    @Query("SELECT * FROM products WHERE id = :id LIMIT 1")
-    suspend fun getProductById(id: Int): ProductEntity?
+    @Query("SELECT * FROM products WHERE id = :id AND userId = :userId LIMIT 1")
+    suspend fun getProductById(id: Int, userId: Int): ProductEntity?
 
     @Query("SELECT COUNT(*) FROM products WHERE userId = :userId")
     suspend fun countProducts(userId: Int): Int
 
-    @Query("SELECT COALESCE(SUM(sellingPrice * quantity), 0) FROM products WHERE userId = :userId")
-    suspend fun getInventoryValue(userId: Int): Long
+    @Query("SELECT COUNT(*) FROM products WHERE userId = :userId AND isActive = 1")
+    suspend fun countActiveProducts(userId: Int): Int
 
-    @Query("SELECT COALESCE(SUM(totalProfit), 0) FROM products WHERE userId = :userId")
+    @Query("SELECT COUNT(*) FROM products WHERE userId = :userId AND isActive = 1 AND quantity > 0 AND quantity <= lowStockThreshold")
+    suspend fun countLowStockProducts(userId: Int): Int
+
+    @Query("SELECT COALESCE(SUM((productionCost + operationalCost)), 0) FROM products WHERE userId = :userId")
+    suspend fun getTotalCapitalValue(userId: Int): Long
+
+    @Query("SELECT COALESCE(SUM(sellingPrice * quantity), 0) FROM products WHERE userId = :userId AND isActive = 1")
+    suspend fun getPotentialSalesValue(userId: Int): Long
+
+    @Query("SELECT COALESCE(SUM(totalProfit), 0) FROM products WHERE userId = :userId AND isActive = 1")
     suspend fun getEstimatedProfit(userId: Int): Long
 }

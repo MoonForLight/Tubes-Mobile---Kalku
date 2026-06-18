@@ -23,7 +23,9 @@
             <TextView android:id="@+id/tvQuantity" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="1 produk" android:textColor="@color/text_dark" />
             <TextView android:id="@+id/tvProfitPercentage" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="25%" android:textColor="@color/green_profit" android:textStyle="bold" />
         </LinearLayout>
-        <Button android:id="@+id/btnRecalculate" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="20dp" android:background="@drawable/bg_button_primary" android:backgroundTint="@null" android:text="Hitung Ulang" android:textAllCaps="false" android:textColor="@color/white" android:textStyle="bold" />
-        <Button android:id="@+id/btnDelete" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="10dp" android:background="@drawable/bg_button_secondary" android:backgroundTint="@null" android:text="Hapus Riwayat" android:textAllCaps="false" android:textColor="#C34A3E" android:textStyle="bold" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Primary" android:id="@+id/btnRecalculate" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="20dp" android:text="Hitung Ulang" android:textAllCaps="false" android:textColor="@color/white" android:textStyle="bold" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Danger" android:id="@+id/btnDelete" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="10dp" android:text="Hapus Riwayat" android:textAllCaps="false" android:textColor="#C34A3E" android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

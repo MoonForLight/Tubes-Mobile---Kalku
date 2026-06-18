@@ -17,14 +17,21 @@ class CalculationResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalculationResultBinding
     private lateinit var result: CalculationResultData
     private var isSaved = false
+    private var productId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalculationResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        productId = intent.getIntExtra(CalculatorActivity.EXTRA_PRODUCT_ID, 0).takeIf { it > 0 }
+        isSaved = savedInstanceState?.getBoolean(KEY_IS_SAVED, false) ?: false
         result = readResultFromIntent()
         showResult()
+        if (isSaved) {
+            binding.btnSaveResult.text = "Tersimpan"
+            binding.btnSaveResult.isEnabled = false
+        }
 
         binding.btnBack.setOnClickListener { finish() }
         binding.btnRecalculate.setOnClickListener { finish() }
@@ -70,6 +77,7 @@ class CalculationResultActivity : AppCompatActivity() {
         val sessionManager = SessionManager(this)
         val calculation = CalculationEntity(
             userId = sessionManager.getUserId(),
+            productId = productId,
             productName = result.productName,
             productionCost = result.productionCost,
             operationalCost = result.operationalCost,
@@ -98,6 +106,11 @@ class CalculationResultActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(KEY_IS_SAVED, isSaved)
+        super.onSaveInstanceState(outState)
+    }
+
     private fun shareResult() {
         val message = buildString {
             appendLine("Hasil Perhitungan Kalku")
@@ -113,5 +126,9 @@ class CalculationResultActivity : AppCompatActivity() {
             putExtra(Intent.EXTRA_TEXT, message)
         }
         startActivity(Intent.createChooser(shareIntent, "Bagikan hasil melalui"))
+    }
+
+    companion object {
+        private const val KEY_IS_SAVED = "is_saved"
     }
 }

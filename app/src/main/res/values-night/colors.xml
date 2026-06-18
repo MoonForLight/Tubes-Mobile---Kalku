@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange_primary">#FF995E</color>
+    <color name="orange_soft">#3A251C</color>
+    <color name="orange_light">#784E36</color>
+    <color name="brown_primary">#F0A05A</color>
+    <color name="brown_dark">#FFD0A4</color>
+    <color name="text_dark">#F5EEE9</color>
+    <color name="input_background">#252A2E</color>
+    <color name="screen_background">#121619</color>
+    <color name="card_background">#1C2226</color>
+    <color name="text_hint">#7D878E</color>
+    <color name="text_gray_light">#B2BBC0</color>
+    <color name="divider">#343B40</color>
+    <color name="green_profit">#44C99B</color>
+    <color name="green_soft">#18382E</color>
+    <color name="chart_track">#865A3D</color>
+    <color name="warning_soft">#3A2B20</color>
+    <color name="danger">#FF8B7E</color>
+    <color name="danger_soft">#472724</color>
+    <color name="gray_soft">#2B3034</color>
+    <color name="blue_soft">#223246</color>
+    <color name="blue_primary">#74A8E8</color>
+</resources>

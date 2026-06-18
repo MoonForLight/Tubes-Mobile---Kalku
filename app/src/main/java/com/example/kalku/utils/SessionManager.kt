@@ -1,10 +1,25 @@
 package com.example.kalku.utils
 
 import android.content.Context
+import com.example.kalku.data.local.UserEntity
 
 class SessionManager(context: Context) {
 
     private val preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+
+    fun saveLogin(user: UserEntity) {
+        preferences.edit()
+            .putBoolean(KEY_IS_LOGGED_IN, true)
+            .putInt(KEY_USER_ID, user.id)
+            .putString(KEY_FULL_NAME, user.fullName)
+            .putString(KEY_BUSINESS_NAME, user.businessName)
+            .putString(KEY_EMAIL, user.email)
+            .putString(KEY_PHONE, user.phone)
+            .putString(KEY_ADDRESS, user.address)
+            .putString(KEY_BUSINESS_DESCRIPTION, user.businessDescription)
+            .putString(KEY_PHOTO_URI, user.photoUri)
+            .apply()
+    }
 
     fun saveLogin(
         userId: Int,
@@ -21,6 +36,18 @@ class SessionManager(context: Context) {
             .apply()
     }
 
+    fun updateProfile(user: UserEntity) {
+        preferences.edit()
+            .putString(KEY_FULL_NAME, user.fullName)
+            .putString(KEY_BUSINESS_NAME, user.businessName)
+            .putString(KEY_EMAIL, user.email)
+            .putString(KEY_PHONE, user.phone)
+            .putString(KEY_ADDRESS, user.address)
+            .putString(KEY_BUSINESS_DESCRIPTION, user.businessDescription)
+            .putString(KEY_PHOTO_URI, user.photoUri)
+            .apply()
+    }
+
     fun updateProfile(fullName: String, businessName: String, email: String) {
         preferences.edit()
             .putString(KEY_FULL_NAME, fullName)
@@ -34,6 +61,10 @@ class SessionManager(context: Context) {
     fun getFullName(): String = preferences.getString(KEY_FULL_NAME, "Pengguna") ?: "Pengguna"
     fun getBusinessName(): String = preferences.getString(KEY_BUSINESS_NAME, "UMKM") ?: "UMKM"
     fun getEmail(): String = preferences.getString(KEY_EMAIL, "") ?: ""
+    fun getPhone(): String = preferences.getString(KEY_PHONE, "") ?: ""
+    fun getAddress(): String = preferences.getString(KEY_ADDRESS, "") ?: ""
+    fun getBusinessDescription(): String = preferences.getString(KEY_BUSINESS_DESCRIPTION, "") ?: ""
+    fun getPhotoUri(): String = preferences.getString(KEY_PHOTO_URI, "") ?: ""
 
     fun logout() {
         preferences.edit().clear().apply()
@@ -46,5 +77,9 @@ class SessionManager(context: Context) {
         const val KEY_FULL_NAME = "full_name"
         const val KEY_BUSINESS_NAME = "business_name"
         const val KEY_EMAIL = "email"
+        const val KEY_PHONE = "phone"
+        const val KEY_ADDRESS = "address"
+        const val KEY_BUSINESS_DESCRIPTION = "business_description"
+        const val KEY_PHOTO_URI = "photo_uri"
     }
 }

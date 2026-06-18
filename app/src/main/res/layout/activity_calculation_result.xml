@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Calculation Result"
+                    android:text="Hasil Perhitungan"
                     android:textColor="@color/text_dark"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -177,7 +177,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Visual Breakdown"
+                    android:text="Rincian Visual"
                     android:textColor="@color/text_dark"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -331,26 +331,24 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Primary"
             android:id="@+id/btnSaveResult"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_button_primary"
-            android:backgroundTint="@null"
             android:text="Simpan Hasil"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Secondary"
             android:id="@+id/btnShareResult"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_button_secondary"
-            android:backgroundTint="@null"
             android:text="Bagikan Hasil"
             android:textAllCaps="false"
             android:textColor="@color/brown_primary"

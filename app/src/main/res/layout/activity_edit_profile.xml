@@ -1,13 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/screen_background">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center_vertical" android:orientation="horizontal"><ImageButton android:id="@+id/btnBack" android:layout_width="44dp" android:layout_height="44dp" android:background="@android:color/transparent" android:src="@drawable/ic_back" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Edit Profil" android:textColor="@color/text_dark" android:textSize="22sp" android:textStyle="bold" /></LinearLayout>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Nama Lengkap" android:textColor="@color/text_dark" android:textStyle="bold" />
-        <EditText android:id="@+id/etFullName" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:paddingHorizontal="16dp" />
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Nama Usaha" android:textColor="@color/text_dark" android:textStyle="bold" />
-        <EditText android:id="@+id/etBusinessName" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:paddingHorizontal="16dp" />
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Email" android:textColor="@color/text_dark" android:textStyle="bold" />
-        <EditText android:id="@+id/etEmail" android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="7dp" android:background="@drawable/bg_input_outline" android:inputType="textEmailAddress" android:paddingHorizontal="16dp" />
-        <Button android:id="@+id/btnSave" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="26dp" android:background="@drawable/bg_button_primary" android:backgroundTint="@null" android:text="Simpan Perubahan" android:textAllCaps="false" android:textColor="@color/white" android:textStyle="bold" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Kembali"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profil"
+                android:textColor="@color/text_dark"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivPhoto"
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:background="@drawable/bg_avatar_circle"
+                android:contentDescription="Foto profil"
+                android:padding="18dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_person" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Secondary"
+                    android:id="@+id/btnChoosePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:text="Pilih Foto Profil"
+                    android:textAllCaps="false"
+                    android:textColor="@color/brown_primary" />
+
+                <Button
+                    android:id="@+id/btnRemovePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@android:color/transparent"
+                    android:text="Hapus Foto"
+                    android:textAllCaps="false"
+                    android:textColor="@color/danger" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Nama Lengkap"
+            android:textColor="@color/text_dark"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_input_outline"
+            android:paddingHorizontal="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nama Usaha"
+            android:textColor="@color/text_dark"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etBusinessName"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_input_outline"
+            android:paddingHorizontal="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Email"
+            android:textColor="@color/text_dark"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_input_outline"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Nomor Telepon"
+            android:textColor="@color/text_dark"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_input_outline"
+            android:hint="08xxxxxxxxxx"
+            android:inputType="phone"
+            android:paddingHorizontal="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Alamat Usaha"
+            android:textColor="@color/text_dark"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_input_outline"
+            android:gravity="top|start"
+            android:inputType="textPostalAddress|textMultiLine"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Deskripsi Usaha"
+            android:textColor="@color/text_dark"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etBusinessDescription"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_input_outline"
+            android:gravity="top|start"
+            android:hint="Ceritakan singkat usaha Anda"
+            android:inputType="textMultiLine"
+            android:maxLength="250"
+            android:padding="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Primary"
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="26dp"
+            android:text="Simpan Perubahan"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

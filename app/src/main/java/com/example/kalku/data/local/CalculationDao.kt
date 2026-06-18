@@ -27,11 +27,28 @@ interface CalculationDao {
     )
     suspend fun searchCalculations(userId: Int, keyword: String): List<CalculationEntity>
 
-    @Query("SELECT * FROM calculations WHERE id = :id LIMIT 1")
-    suspend fun getCalculationById(id: Int): CalculationEntity?
+    @Query(
+        """
+        SELECT * FROM calculations
+        WHERE userId = :userId
+          AND createdAt BETWEEN :startTime AND :endTime
+        ORDER BY createdAt DESC
+        """
+    )
+    suspend fun getCalculationsByDateRange(
+        userId: Int,
+        startTime: Long,
+        endTime: Long
+    ): List<CalculationEntity>
+
+    @Query("SELECT * FROM calculations WHERE id = :id AND userId = :userId LIMIT 1")
+    suspend fun getCalculationById(id: Int, userId: Int): CalculationEntity?
 
     @Query("SELECT COALESCE(SUM(totalProfit), 0) FROM calculations WHERE userId = :userId")
     suspend fun getTotalProfitByUser(userId: Int): Long
+
+    @Query("DELETE FROM calculations WHERE userId = :userId")
+    suspend fun deleteByUser(userId: Int)
 
     @Delete
     suspend fun delete(calculation: CalculationEntity)

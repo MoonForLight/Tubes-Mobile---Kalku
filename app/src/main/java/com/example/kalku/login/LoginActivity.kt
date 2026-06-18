@@ -77,12 +77,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResult.observe(this) { result ->
             when (result) {
                 is LoginResult.Success -> {
-                    SessionManager(this).saveLogin(
-                        userId = result.userId,
-                        fullName = result.fullName,
-                        businessName = result.businessName,
-                        email = result.email
-                    )
+                    SessionManager(this).saveLogin(result.user)
                     Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

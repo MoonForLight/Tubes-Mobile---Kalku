@@ -12,6 +12,7 @@ import com.example.kalku.data.local.AppDatabase
 import com.example.kalku.data.local.UserEntity
 import com.example.kalku.databinding.ActivityRegisterBinding
 import com.example.kalku.login.LoginActivity
+import com.example.kalku.utils.PasswordUtils
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
@@ -32,26 +33,29 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun togglePassword() {
         passwordVisible = !passwordVisible
-        binding.etPassword.transformationMethod = if (passwordVisible) {
+        val method = if (passwordVisible) {
             HideReturnsTransformationMethod.getInstance()
         } else {
             PasswordTransformationMethod.getInstance()
         }
+        binding.etPassword.transformationMethod = method
+        binding.etConfirmPassword.transformationMethod = method
         binding.etPassword.setSelection(binding.etPassword.text.length)
+        binding.etConfirmPassword.setSelection(binding.etConfirmPassword.text.length)
     }
 
     private fun register() {
         val fullName = binding.etFullName.text.toString().trim()
         val businessName = binding.etBusinessName.text.toString().trim()
-        val email = binding.etEmail.text.toString().trim()
+        val email = binding.etEmail.text.toString().trim().lowercase()
         val password = binding.etPassword.text.toString()
         val confirmation = binding.etConfirmPassword.text.toString()
 
         when {
-            fullName.isBlank() -> binding.etFullName.error = "Nama lengkap harus diisi"
-            businessName.isBlank() -> binding.etBusinessName.error = "Nama usaha harus diisi"
+            fullName.length < 3 -> binding.etFullName.error = "Nama lengkap minimal 3 karakter"
+            businessName.length < 2 -> binding.etBusinessName.error = "Nama usaha harus diisi"
             !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> binding.etEmail.error = "Format email tidak valid"
-            password.length < 8 -> binding.etPassword.error = "Password minimal 8 karakter"
+            !isStrongPassword(password) -> binding.etPassword.error = "Minimal 8 karakter, gunakan huruf dan angka"
             password != confirmation -> binding.etConfirmPassword.error = "Konfirmasi password tidak cocok"
             !binding.cbTerms.isChecked -> Toast.makeText(this, "Setujui syarat dan ketentuan terlebih dahulu", Toast.LENGTH_SHORT).show()
             else -> lifecycleScope.launch {
@@ -66,13 +70,17 @@ class RegisterActivity : AppCompatActivity() {
                         fullName = fullName,
                         businessName = businessName,
                         email = email,
-                        password = password
+                        password = PasswordUtils.hash(password)
                     )
                 )
                 Toast.makeText(this@RegisterActivity, "Registrasi berhasil. Silakan login.", Toast.LENGTH_LONG).show()
                 openLogin()
             }
         }
+    }
+
+    private fun isStrongPassword(password: String): Boolean {
+        return password.length >= 8 && password.any(Char::isLetter) && password.any(Char::isDigit)
     }
 
     private fun openLogin() {

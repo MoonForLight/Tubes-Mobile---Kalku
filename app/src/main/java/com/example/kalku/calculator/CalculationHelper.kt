@@ -1,10 +1,8 @@
 package com.example.kalku.calculator
 
-import kotlin.math.roundToLong
+import kotlin.math.ceil
 
-/**
- * Rumus inti penentuan harga jual Kalku.
- */
+/** Rumus inti penentuan harga jual Kalku. */
 object CalculationHelper {
 
     fun calculate(
@@ -18,13 +16,17 @@ object CalculationHelper {
         require(productionCost >= 0) { "Biaya produksi tidak boleh negatif" }
         require(operationalCost >= 0) { "Biaya operasional tidak boleh negatif" }
         require(quantity > 0) { "Jumlah produk harus lebih dari 0" }
-        require(profitPercentage >= 0) { "Persentase keuntungan tidak boleh negatif" }
+        require(profitPercentage in 0.0..100.0) { "Persentase keuntungan harus 0–100%" }
 
-        val totalCost = productionCost + operationalCost
-        val costPerItem = (totalCost.toDouble() / quantity).roundToLong()
-        val profitPerItem = (costPerItem * profitPercentage / 100.0).roundToLong()
-        val sellingPrice = costPerItem + profitPerItem
-        val totalProfit = profitPerItem * quantity
+        val totalCost = Math.addExact(productionCost, operationalCost)
+        val exactCostPerItem = totalCost.toDouble() / quantity.toDouble()
+        // Dibulatkan ke atas agar seluruh modal tetap tertutup ketika biaya tidak habis dibagi.
+        val costPerItem = ceil(exactCostPerItem).toLong()
+        val exactSellingPrice = exactCostPerItem * (1.0 + profitPercentage / 100.0)
+        val sellingPrice = ceil(exactSellingPrice).toLong().coerceAtLeast(costPerItem)
+        val profitPerItem = (sellingPrice - costPerItem).coerceAtLeast(0L)
+        val totalRevenue = sellingPrice * quantity
+        val totalProfit = (totalRevenue - totalCost).coerceAtLeast(0L)
 
         return CalculationResultData(
             productName = productName,
