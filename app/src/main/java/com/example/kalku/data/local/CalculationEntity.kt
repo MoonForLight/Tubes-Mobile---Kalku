@@ -1,16 +1,18 @@
 package com.example.kalku.data.local
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-/**
- * Data hasil hitung yang nantinya dibaca oleh fitur Riwayat.
- */
-@Entity(tableName = "calculations")
+@Entity(
+    tableName = "calculations",
+    indices = [Index("userId"), Index("productId"), Index("createdAt")]
+)
 data class CalculationEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val userId: Int,
+    val productId: Int? = null,
     val productName: String,
     val productionCost: Long,
     val operationalCost: Long,

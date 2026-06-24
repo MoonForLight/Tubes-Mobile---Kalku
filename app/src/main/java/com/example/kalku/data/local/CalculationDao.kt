@@ -15,41 +15,41 @@ interface CalculationDao {
     @Query("SELECT * FROM calculations WHERE userId = :userId ORDER BY createdAt DESC")
     suspend fun getCalculationsByUser(userId: Int): List<CalculationEntity>
 
-    @Query("""
-        SELECT * FROM calculations
-        WHERE userId = :userId
-        AND productName LIKE '%' || :keyword || '%'
-        ORDER BY createdAt DESC
-    """)
-    suspend fun searchCalculationsByUser(userId: Int, keyword: String): List<CalculationEntity>
+    @Query("SELECT * FROM calculations WHERE userId = :userId ORDER BY createdAt DESC LIMIT :limit")
+    suspend fun getRecentCalculations(userId: Int, limit: Int): List<CalculationEntity>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM calculations
-        WHERE userId = :userId
-        AND createdAt >= :startDate
+        WHERE userId = :userId AND productName LIKE '%' || :keyword || '%'
         ORDER BY createdAt DESC
-    """)
-    suspend fun getCalculationsByDate(userId: Int, startDate: Long): List<CalculationEntity>
+        """
+    )
+    suspend fun searchCalculations(userId: Int, keyword: String): List<CalculationEntity>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM calculations
         WHERE userId = :userId
-        AND productName LIKE '%' || :keyword || '%'
-        AND createdAt >= :startDate
+          AND createdAt BETWEEN :startTime AND :endTime
         ORDER BY createdAt DESC
-    """)
-    suspend fun searchCalculationsByDate(
+        """
+    )
+    suspend fun getCalculationsByDateRange(
         userId: Int,
-        keyword: String,
-        startDate: Long
+        startTime: Long,
+        endTime: Long
     ): List<CalculationEntity>
 
-    @Query("SELECT * FROM calculations WHERE id = :id LIMIT 1")
-    suspend fun getCalculationById(id: Int): CalculationEntity?
+    @Query("SELECT * FROM calculations WHERE id = :id AND userId = :userId LIMIT 1")
+    suspend fun getCalculationById(id: Int, userId: Int): CalculationEntity?
+
+    @Query("SELECT COALESCE(SUM(totalProfit), 0) FROM calculations WHERE userId = :userId")
+    suspend fun getTotalProfitByUser(userId: Int): Long
+
+    @Query("DELETE FROM calculations WHERE userId = :userId")
+    suspend fun deleteByUser(userId: Int)
 
     @Delete
     suspend fun delete(calculation: CalculationEntity)
-
-    @Query("DELETE FROM calculations WHERE id = :id")
-    suspend fun deleteById(id: Int)
 }

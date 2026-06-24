@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pricing Calculator"
+                    android:text="Kalkulator Harga Jual"
                     android:textColor="@color/text_dark"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -164,12 +164,11 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Circle"
                 android:id="@+id/btnMinus"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:background="@drawable/bg_circle_button"
-                android:backgroundTint="@null"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:text="−"
@@ -187,12 +186,11 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Circle"
                 android:id="@+id/btnPlus"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:background="@drawable/bg_circle_button"
-                android:backgroundTint="@null"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:text="+"
@@ -260,13 +258,94 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <Button
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_card_rounded"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ringkasan Sementara"
+                android:textColor="@color/text_dark"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Modal"
+                        android:textColor="@color/text_gray_light"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvPreviewTotalCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Rp0"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Harga Jual / Produk"
+                        android:textColor="@color/text_gray_light"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvPreviewSellingPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Rp0"
+                        android:textColor="@color/brown_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPreviewProfit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Estimasi total profit: Rp0"
+                android:textColor="@color/green_profit"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Kalku.Button.Primary"
             android:id="@+id/btnCalculate"
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/bg_button_primary"
-            android:backgroundTint="@null"
             android:text="Hitung Harga Jual"
             android:textAllCaps="false"
             android:textColor="@color/white"
