@@ -4,7 +4,7 @@
     xmlns:tools="http://tools.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F8FA"
+    android:background="@color/screen_background"
     android:fillViewport="true"
     tools:context=".ui.login.LoginActivity">
 
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:background="@drawable/bg_input_field"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/card_background"
             android:elevation="4dp"
             android:orientation="vertical"
             android:padding="24dp"
