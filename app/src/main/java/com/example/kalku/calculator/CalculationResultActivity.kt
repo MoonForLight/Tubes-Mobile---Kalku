@@ -10,6 +10,7 @@ import com.example.kalku.data.local.CalculationEntity
 import com.example.kalku.databinding.ActivityCalculationResultBinding
 import com.example.kalku.utils.CurrencyUtils
 import com.example.kalku.utils.SessionManager
+import com.example.kalku.MainActivity
 import kotlinx.coroutines.launch
 
 class CalculationResultActivity : AppCompatActivity() {
@@ -104,6 +105,12 @@ class CalculationResultActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+
+        finish()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

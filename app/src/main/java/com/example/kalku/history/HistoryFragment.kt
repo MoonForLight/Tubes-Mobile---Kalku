@@ -16,6 +16,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kalku.MainActivity
+import com.example.kalku.calculator.CalculationResultActivity
+import com.example.kalku.calculator.CalculatorActivity
 import com.example.kalku.data.local.AppDatabase
 import com.example.kalku.data.local.CalculationEntity
 import com.example.kalku.databinding.FragmentHistoryBinding
@@ -106,6 +109,9 @@ class HistoryFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = applyFilters()
             override fun afterTextChanged(s: Editable?) = Unit
         })
+        binding.fabAddProduct.setOnClickListener{
+            startActivity(Intent(requireContext(), CalculatorActivity::class.java))
+        }
     }
 
     override fun onResume() {
@@ -179,6 +185,11 @@ class HistoryFragment : Fragment() {
             today.get(Calendar.MONTH),
             today.get(Calendar.DAY_OF_MONTH)
         ).show()
+    }
+
+    private fun addProduct() {
+        val intent = Intent(requireContext(), CalculationResultActivity::class.java)
+        startActivity(intent)
     }
 
     private fun confirmDelete(calculation: CalculationEntity) {

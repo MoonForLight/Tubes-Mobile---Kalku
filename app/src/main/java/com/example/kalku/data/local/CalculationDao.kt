@@ -52,4 +52,10 @@ interface CalculationDao {
 
     @Delete
     suspend fun delete(calculation: CalculationEntity)
+
+    @Query("SELECT COALESCE(SUM(totalProfit), 0) FROM calculations WHERE userId = :userId AND isActive = 1")
+    suspend fun getEstimatedProfit(userId: Int): Long
+
+    @Query("SELECT COUNT(*) FROM calculations WHERE userId = :userId AND isActive = 1 AND quantity > 0 AND quantity <= lowStockThreshold")
+    suspend fun countLowStockProducts(userId: Int): Int
 }

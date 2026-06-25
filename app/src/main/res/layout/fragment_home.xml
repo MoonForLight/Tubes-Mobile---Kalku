@@ -40,44 +40,46 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="118dp"
-                android:layout_marginEnd="7dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_stat_orange"
-                android:orientation="vertical"
-                android:padding="16dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="118dp"-->
+<!--                android:layout_marginEnd="7dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/bg_stat_orange"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="16dp">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Produk Aktif"
-                    android:textColor="@color/text_gray_light"
-                    android:textSize="13sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Produk Aktif"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/text_gray_light"-->
+<!--                    android:textSize="13sp" />-->
 
-                <TextView
-                    android:id="@+id/tvProductCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="0"
-                    android:textColor="@color/text_dark"
-                    android:textSize="27sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tvProductCount"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:text="0"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/text_dark"-->
+<!--                    android:textSize="27sp"-->
+<!--                    android:textStyle="bold" />-->
 
-                <TextView
-                    android:id="@+id/tvLowStockSummary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 stok rendah"
-                    android:textColor="@color/brown_primary"
-                    android:textSize="11sp" />
-            </LinearLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/tvLowStockSummary"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="0 stok rendah"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/brown_primary"-->
+<!--                    android:textSize="11sp" />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -89,28 +91,31 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Estimasi Profit"
+                    android:textAlignment="center"
                     android:textColor="@color/text_gray_light"
                     android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tvEstimatedProfit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Rp0"
+                    android:textAlignment="center"
                     android:textColor="@color/green_profit"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvProfitSource"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:text="profit riwayat tersimpan"
+                    android:textAlignment="center"
                     android:textColor="@color/green_profit"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -134,17 +139,6 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
-            <com.google.android.material.button.MaterialButton
-            style="@style/Widget.Kalku.Button.Secondary"
-                android:id="@+id/btnAddProduct"
-                android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:layout_marginStart="6dp"
-                android:layout_weight="1"
-                android:text="Tambah Produk"
-                android:textAllCaps="false"
-                android:textColor="@color/brown_primary"
-                android:textStyle="bold" />
         </LinearLayout>
 
 

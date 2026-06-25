@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/screen_background"
     android:orientation="vertical"
     android:padding="20dp">
@@ -83,4 +84,14 @@
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:visibility="gone" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddProduct"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:contentDescription="Tambah produk"
+        app:backgroundTint="@color/brown_primary"
+        app:srcCompat="@drawable/ic_add" />
 </LinearLayout>

@@ -34,6 +34,17 @@ class CalculatorActivity : AppCompatActivity() {
             }
         }
 
+        binding.tvQuantity.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                quantity = s.toString().toIntOrNull()?.coerceAtLeast(1) ?: 1
+                updatePreview()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
         binding.seekProfit.max = 100
         binding.seekProfit.progress = 25
         updateProfitLabel(25)
@@ -75,7 +86,8 @@ class CalculatorActivity : AppCompatActivity() {
     }
 
     private fun updateQuantity() {
-        binding.tvQuantity.text = quantity.toString()
+        binding.tvQuantity.setText(quantity.toString())
+        binding.tvQuantity.setSelection(binding.tvQuantity.text.length)
         updatePreview()
     }
 

@@ -176,12 +176,14 @@
                 android:textColor="@color/brown_primary"
                 android:textSize="22sp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tvQuantity"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="1"
+                android:hint="1"
+                android:inputType="number"
                 android:textColor="@color/text_dark"
                 android:textSize="24sp"
                 android:textStyle="bold" />

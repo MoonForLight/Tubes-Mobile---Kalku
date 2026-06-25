@@ -70,7 +70,7 @@ class ProfileFragment : Fragment() {
             binding.tvTotalProfit.text = CurrencyUtils.formatRupiah(
                 database.calculationDao().getTotalProfitByUser(userId)
             )
-            binding.tvProductCount.text = database.productDao().countActiveProducts(userId).toString()
+//            binding.tvProductCount.text = database.calculationDao().countActiveProducts(userId).toString()
         }
     }
 
@@ -128,7 +128,6 @@ class ProfileFragment : Fragment() {
                 return@launch
             }
             database.calculationDao().deleteByUser(user.id)
-            database.productDao().deleteByUser(user.id)
             database.userDao().deleteUser(user)
             logout()
         }

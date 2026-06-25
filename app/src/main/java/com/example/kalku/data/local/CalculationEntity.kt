@@ -1,5 +1,6 @@
 package com.example.kalku.data.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
@@ -23,5 +24,11 @@ data class CalculationEntity(
     val profitPerItem: Long,
     val sellingPrice: Long,
     val totalProfit: Long,
+    @ColumnInfo(defaultValue = "''")
+    val imageUri: String = "",
+    @ColumnInfo(defaultValue = "1")
+    val isActive: Boolean = true,
+    @ColumnInfo(defaultValue = "5")
+    val lowStockThreshold: Int = 5,
     val createdAt: Long = System.currentTimeMillis()
 )

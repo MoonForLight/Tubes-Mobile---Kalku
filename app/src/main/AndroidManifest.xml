@@ -12,7 +12,6 @@
         <activity android:name=".profile.AppSettingsActivity" android:exported="false" />
         <activity android:name=".profile.EditProfileActivity" android:exported="false" />
         <activity android:name=".history.HistoryDetailActivity" android:exported="false" />
-        <activity android:name=".product.ProductFormActivity" android:exported="false" />
         <activity android:name=".login.ForgotPasswordActivity" android:exported="false" />
         <activity android:name=".calculator.CalculationResultActivity" android:exported="false" />
         <activity android:name=".calculator.CalculatorActivity" android:exported="false" />
