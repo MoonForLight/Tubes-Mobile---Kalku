@@ -12,8 +12,8 @@ android {
         applicationId = "com.example.kalku"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,11 +48,10 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.fragment:fragment-ktx:1.8.2")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
